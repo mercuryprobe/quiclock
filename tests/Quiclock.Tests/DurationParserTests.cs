@@ -7,6 +7,8 @@ public sealed class DurationParserTests
 {
     [Theory]
     [InlineData("5", 300)]
+    [InlineData("5m", 300)]
+    [InlineData("5min", 300)]
     [InlineData("1.5", 90)]
     [InlineData("90s", 90)]
     [InlineData("2:30", 150)]
