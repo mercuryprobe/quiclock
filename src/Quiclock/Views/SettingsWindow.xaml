@@ -1,0 +1,62 @@
+<Window x:Class="Quiclock.Views.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Settings"
+        Width="360"
+        Height="220"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
+  <Grid Margin="16">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="130" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+
+    <TextBlock Text="Global shortcut"
+               VerticalAlignment="Center" />
+    <TextBox x:Name="HotkeyTextBox"
+             Grid.Column="1"
+             Height="28"
+             VerticalContentAlignment="Center" />
+
+    <TextBlock Grid.Row="1"
+               Grid.ColumnSpan="2"
+               Margin="0,8,0,0"
+               Foreground="#6B7280"
+               Text="Example: Ctrl+Alt+T" />
+
+    <CheckBox x:Name="LaunchAtLoginCheckBox"
+              Grid.Row="2"
+              Grid.ColumnSpan="2"
+              Margin="0,16,0,0"
+              Content="Launch at Windows login" />
+
+    <CheckBox x:Name="SoundEnabledCheckBox"
+              Grid.Row="3"
+              Grid.ColumnSpan="2"
+              Margin="0,8,0,0"
+              Content="Play sound when a timer completes" />
+
+    <StackPanel Grid.Row="4"
+                Grid.ColumnSpan="2"
+                Orientation="Horizontal"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Margin="0,16,0,0">
+      <Button Width="72"
+              Margin="0,0,8,0"
+              Content="Save"
+              Click="SaveButton_OnClick" />
+      <Button Width="72"
+              Content="Close"
+              Click="CloseButton_OnClick" />
+    </StackPanel>
+  </Grid>
+</Window>
