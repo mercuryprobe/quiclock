@@ -41,26 +41,26 @@ public static class DurationParser
         if (text.EndsWith("min", StringComparison.OrdinalIgnoreCase))
         {
             var rawMinutes = text[..^3];
-            if (!double.TryParse(rawMinutes, NumberStyles.Float, CultureInfo.InvariantCulture, out var minutesValue))
+            if (!double.TryParse(rawMinutes, NumberStyles.Float, CultureInfo.InvariantCulture, out var minutesFromMinSuffix))
             {
                 error = "Use a number followed by min, for example 5min.";
                 return false;
             }
 
-            duration = TimeSpan.FromMinutes(minutesValue);
+            duration = TimeSpan.FromMinutes(minutesFromMinSuffix);
             return ValidatePositiveDuration(duration, ref error);
         }
 
         if (text.EndsWith('m') || text.EndsWith('M'))
         {
             var rawMinutes = text[..^1];
-            if (!double.TryParse(rawMinutes, NumberStyles.Float, CultureInfo.InvariantCulture, out var minutesValue))
+            if (!double.TryParse(rawMinutes, NumberStyles.Float, CultureInfo.InvariantCulture, out var minutesFromMSuffix))
             {
                 error = "Use a number followed by m, for example 5m.";
                 return false;
             }
 
-            duration = TimeSpan.FromMinutes(minutesValue);
+            duration = TimeSpan.FromMinutes(minutesFromMSuffix);
             return ValidatePositiveDuration(duration, ref error);
         }
 
@@ -77,13 +77,13 @@ public static class DurationParser
             return ValidatePositiveDuration(duration, ref error);
         }
 
-        if (!double.TryParse(text, NumberStyles.Float, CultureInfo.InvariantCulture, out var minutesValue))
+        if (!double.TryParse(text, NumberStyles.Float, CultureInfo.InvariantCulture, out var minutesAsDefault))
         {
             error = "Unsupported format. Try 5, 5m, 5min, 1.5, 90s, or 2:30.";
             return false;
         }
 
-        duration = TimeSpan.FromMinutes(minutesValue);
+        duration = TimeSpan.FromMinutes(minutesAsDefault);
         return ValidatePositiveDuration(duration, ref error);
     }
 
