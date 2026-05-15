@@ -1,10 +1,8 @@
-using System.Windows;
-using System.Windows.Input;
 using Quiclock.Services;
 
 namespace Quiclock.Views;
 
-public partial class TimerInputWindow : Window
+public partial class TimerInputWindow : System.Windows.Window
 {
     private readonly TimerService _timerService;
     private bool _allowClose;
@@ -22,24 +20,24 @@ public partial class TimerInputWindow : Window
         DurationTextBox.SelectAll();
     }
 
-    private void StartButton_OnClick(object sender, RoutedEventArgs e)
+    private void StartButton_OnClick(object sender, System.Windows.RoutedEventArgs e)
     {
         Submit();
     }
 
-    private void CloseButton_OnClick(object sender, RoutedEventArgs e)
+    private void CloseButton_OnClick(object sender, System.Windows.RoutedEventArgs e)
     {
         Hide();
     }
 
-    private void DurationTextBox_OnKeyDown(object sender, KeyEventArgs e)
+    private void DurationTextBox_OnKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
     {
-        if (e.Key == Key.Enter)
+        if (e.Key == System.Windows.Input.Key.Enter)
         {
             Submit();
             e.Handled = true;
         }
-        else if (e.Key == Key.Escape)
+        else if (e.Key == System.Windows.Input.Key.Escape)
         {
             Hide();
             e.Handled = true;

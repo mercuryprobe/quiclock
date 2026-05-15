@@ -1,4 +1,3 @@
-using System.Windows;
 using Quiclock.Models;
 using Quiclock.Services;
 using Quiclock.Views;
@@ -6,7 +5,7 @@ using WinForms = System.Windows.Forms;
 
 namespace Quiclock;
 
-public partial class App : Application
+public partial class App : System.Windows.Application
 {
     private AppSettings _settings = null!;
     private SettingsService _settingsService = null!;
@@ -19,10 +18,10 @@ public partial class App : Application
     private ActiveTimersWindow? _activeTimersWindow;
     private SettingsWindow? _settingsWindow;
 
-    protected override void OnStartup(StartupEventArgs e)
+    protected override void OnStartup(System.Windows.StartupEventArgs e)
     {
         base.OnStartup(e);
-        ShutdownMode = ShutdownMode.OnExplicitShutdown;
+        ShutdownMode = System.Windows.ShutdownMode.OnExplicitShutdown;
 
         _settingsService = new SettingsService();
         _settings = _settingsService.Load();
@@ -38,7 +37,7 @@ public partial class App : Application
         ApplySettings(_settings, isInitialLoad: true);
     }
 
-    protected override void OnExit(ExitEventArgs e)
+    protected override void OnExit(System.Windows.ExitEventArgs e)
     {
         _timerInputWindow?.PrepareForExit();
         _activeTimersWindow?.PrepareForExit();
@@ -89,16 +88,16 @@ public partial class App : Application
         ShowWindow(_settingsWindow);
     }
 
-    private void ShowWindow(Window window)
+    private void ShowWindow(System.Windows.Window window)
     {
         if (!window.IsVisible)
         {
             window.Show();
         }
 
-        if (window.WindowState == WindowState.Minimized)
+        if (window.WindowState == System.Windows.WindowState.Minimized)
         {
-            window.WindowState = WindowState.Normal;
+            window.WindowState = System.Windows.WindowState.Normal;
         }
 
         window.Activate();
