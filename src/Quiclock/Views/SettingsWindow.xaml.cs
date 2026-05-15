@@ -21,7 +21,12 @@ public partial class SettingsWindow : Window
     {
         if (!HotkeyBinding.TryParse(HotkeyTextBox.Text, out var binding, out var error))
         {
-            MessageBox.Show(this, error, "Invalid shortcut", MessageBoxButton.OK, MessageBoxImage.Warning);
+            System.Windows.MessageBox.Show(
+                this,
+                error,
+                "Invalid shortcut",
+                System.Windows.MessageBoxButton.OK,
+                System.Windows.MessageBoxImage.Warning);
             return;
         }
 
@@ -39,7 +44,12 @@ public partial class SettingsWindow : Window
         }
         catch (Exception ex)
         {
-            MessageBox.Show(this, ex.Message, "Unable to save settings", MessageBoxButton.OK, MessageBoxImage.Error);
+            System.Windows.MessageBox.Show(
+                this,
+                ex.Message,
+                "Unable to save settings",
+                System.Windows.MessageBoxButton.OK,
+                System.Windows.MessageBoxImage.Error);
         }
     }
 
